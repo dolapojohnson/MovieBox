@@ -2,6 +2,7 @@ import React from "react";
 import WickImage from '../assets/images/Poster.png'
 import IMDb from '../assets/icons/IMDB.png'
 import Tomato from '../assets/icons/Tomatoes.png'
+import PlayBtn from '../assets/icons/Play.svg'
 import NavBar from "./Navigation";
 
 const Header = () => {
@@ -24,6 +25,12 @@ const Header = () => {
                                     a $14 million price tag on his head, he is the <br/>
                                     target of hit men and women everywhere.
                               </p>
+                              <div className="watch-btn">
+                                    <img src={PlayBtn} />
+                                    <>
+                                          WATCH TRAILER
+                                    </>
+                              </div>
                         </div>
                         <div></div>
                   </div>

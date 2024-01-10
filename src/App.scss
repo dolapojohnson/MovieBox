@@ -41,7 +41,7 @@
       background-position: top center;
 
       .trailer-container {
-            padding: 50px 100px;
+            padding: 80px 100px;
             @include flex-container(flex-start, nowrap, 0, row);
 
             h1{
@@ -63,6 +63,11 @@
             .movie-source-layout {
                   @include flex-container(flex-start, nowrap, 30px, row);
                   padding-top: 10px;
+            }
+
+            .watch-btn {
+                  @include flex-container(flex-start, nowrap, 10px, row)
+
             }
       }
 }
