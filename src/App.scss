@@ -7,10 +7,14 @@
       font-family:  Calibri, 'Trebuchet MS', sans-serif
 }
 
+.app {
+      color: $text-color-white;
+}
+
 .nav-container {
       @include flex-container(space-around, wrap, 30px, row);
 
-      padding-top: 20px;
+      padding-top: 30px;
 
       .input-field {
             padding: 6px 10px;
@@ -31,6 +35,13 @@
             font-weight: 400;
       }
 
+      input:focus {
+            outline: none;
+            color: $text-color-white;
+            font-weight: 400;
+            font-size: 16px;
+      }
+
       .menu-btn {
             cursor: pointer;
       }
@@ -38,7 +49,9 @@
 
 .header-container {
       background-repeat: no-repeat;
-      background-position: top center;
+      // background-position: top center;
+      background-size: contain;
+      height: 100vh;
 
       .trailer-container {
             padding: 80px 100px;
@@ -53,7 +66,7 @@
             }
 
             p{
-                  padding-top: 10px;
+                  margin: 16px 0;
                   font-size: 14px;
                   font-style: normal;
                   font-weight: 500;
@@ -62,16 +75,73 @@
 
             .movie-source-layout {
                   @include flex-container(flex-start, nowrap, 30px, row);
-                  padding-top: 10px;
+                  margin: 16px 0;
             }
 
             .watch-btn {
-                  @include flex-container(flex-start, nowrap, 10px, row)
-
+                  @include flex-container(flex-start, nowrap, 8px, row);
+                  margin: 16px 0px;
+                  border-radius: 6px;
+                  padding: 6px 16px;
+                  background: $text-color-rose;
+                  cursor: pointer;
+                  width: 140px;
+                  font-size: 14px;
             }
       }
 }
 
-.app {
-      color: $text-color-white;
+//Featured Movies styling
+.card-container {
+      margin: 10px;
+      // height: 370px;
+      width: 180px;
+
+      .movie-img-container {
+            height: 270px;
+            background-repeat: no-repeat;
+            position: relative;
+            // background-position: top center;
+            text-align: center;
+            background-size: contain;
+      }
+
+      .movie-details-container {
+            color: $text-color-black;
+
+            .place-genre {
+                  color: $text-color-grey;
+                  font-size: 12px;
+                  font-style: normal;
+                  font-weight: 700;
+                  line-height: normal;
+                  margin-top: 10px;
+            }
+
+            h3{
+                  font-size: 18px;
+                  font-style: normal;
+                  font-weight: 700;
+                  line-height: normal;
+                  margin-top: 8px
+            }
+            
+            .movie-ratings-container {
+                  @include flex-container(space-between, nowrap, 0, row);
+                  margin-top: 10px;
+
+                  .movie-ratings {
+                        @include flex-container(center, nowrap, 5px, row);
+
+                        .rating-value {
+                              color: $text-color-gray-900;
+                              font-size: 12px;
+                              font-style: normal;
+                              font-weight: 400;
+                              // line-height: 12px;
+                        }
+                  }
+            }
+      }
 }
+
