@@ -4,7 +4,6 @@ import Header from './components/Header';
 // import MovieCard from './components/MovieCard';
 import SimpleSlider from './components/Sliders/SimpleSlider';
 import Footer from './components/Footer';
-import VideoCard from './components/VideoCard';
 import ArrivalSlider from './components/Sliders/ArrivalSlider';
 import VideoSlider from './components/Sliders/VideoSlider';
 import CastSlider from './components/Sliders/CastsSlider';

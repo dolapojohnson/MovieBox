@@ -26,7 +26,7 @@ const Header = () => {
                                     target of hit men and women everywhere.
                               </p>
                               <div className="watch-btn">
-                                    <img src={PlayBtn} />
+                                    <img src={PlayBtn} alt="Watch Trailer Icon"/>
                                     <>
                                           WATCH TRAILER
                                     </>

@@ -1,6 +1,5 @@
 import React from "react";
 import Thumbnail from '../assets/images/Thumbnails.png'
-import Play from '../assets/icons/Play.svg'
 
 const VideoCard = () => {
       return(
