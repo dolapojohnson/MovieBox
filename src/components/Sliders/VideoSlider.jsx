@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Slider from "react-slick"
 import "./slick.css";
 import "./slick-theme.scss";
@@ -41,6 +41,18 @@ const VideoSlider = ({sectionTitle, numberOfSlides}) => {
             ]
       }
 
+      const [allVideos, setAllVideos] = useState([]);
+
+      useEffect(() => {
+            const fetchCharacters = async () => {
+                  const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=98c4ef5b2dc9e5742da5ddd3b9816b9f');
+                  const questions = await response.json();
+                  const videos = questions.results;
+                  setAllVideos(videos);
+            }
+            fetchCharacters();
+      }, [])
+
       const more = "See more >"
 
       return(
@@ -54,13 +66,13 @@ const VideoSlider = ({sectionTitle, numberOfSlides}) => {
                         </h3>
                   </div>
                   <Slider {...settings}>
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
+                        {
+                              allVideos.map((v) => {
+                                    return(
+                                          <VideoCard v={v} />
+                                    )
+                              })
+                        }
                   </Slider>
             </div>
       )

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick"
 import "./slick.css";
 import "./slick-theme.scss";
@@ -41,6 +41,18 @@ const CastSlider = ({sectionTitle, numberOfSlides}) => {
             ]
       }
 
+      const [allCharacters, setAllCharacters] = useState([]);
+
+      useEffect(() => {
+            const fetchCharacters = async () => {
+                  const response = await fetch('https://api.themoviedb.org/3/person/popular?api_key=98c4ef5b2dc9e5742da5ddd3b9816b9f');
+                  const questions = await response.json();
+                  const casts = questions.results;
+                  setAllCharacters(casts);
+            }
+            fetchCharacters();
+      }, [])
+
       const more = "See more >"
 
       return(
@@ -54,14 +66,13 @@ const CastSlider = ({sectionTitle, numberOfSlides}) => {
                         </h3>
                   </div>
                   <Slider {...settings}>
-                        <CastCard />
-                        <CastCard />
-                        <CastCard />
-                        <CastCard />
-                        <CastCard />
-                        <CastCard />
-                        <CastCard />
-                        <CastCard />
+                        {
+                              allCharacters.map((c) => {
+                                    return(
+                                          <CastCard c={c} />
+                                    );
+                              })
+                        }
                   </Slider>
             </div>
       )
