@@ -1,9 +1,13 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Slider from "react-slick"
 import "./slick.css";
 import "./slick-theme.scss";
 
-import MovieCard from "../MovieCard";
+// import IMDbIcon from '../../assets/icons/IMDB.png'
+// import tomatoIcon from '../../assets/icons/tomatoIcon.png'
+// import Stranger from '../../assets/images/stranger.png'
+
+import ArrivalCard from "../ArrivalCard";
 
 const ArrivalSlider = ({sectionTitle, numberOfSlides}) => {
       const settings = {
@@ -43,6 +47,39 @@ const ArrivalSlider = ({sectionTitle, numberOfSlides}) => {
 
       const more = "See more >"
 
+      const [allArrivals, setAllArrivals] = useState([]);
+      const [newArrivals, setNewArrivals] = useState([]);
+
+      useEffect(() => {
+            const fetchArrivals = async () => {
+                  const response = await fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=98c4ef5b2dc9e5742da5ddd3b9816b9f');
+                  const resToJson = await response.json();
+                  const results = await resToJson.results;
+                  // console.log(results)
+                  setAllArrivals(results)
+            }
+            fetchArrivals();
+      }, []);
+
+      const  fetchMovieDetails = async (movieId) => {
+            try {
+                  const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=98c4ef5b2dc9e5742da5ddd3b9816b9f`);
+                  if (!response.ok) {
+                        throw new Error(`Failed to fetch details for movie ID ${movieId}`);                  
+                  }
+                  const movieDetails = await response.json();
+                  //Handle movie details as needed
+                  // console.log('Movie details: ', movieDetails)
+                  setNewArrivals(movieDetails)
+            } catch (error) {
+                  console.error(error);
+            }
+      };
+
+      useEffect(() => {
+            allArrivals.forEach((movie) => fetchMovieDetails(movie.id));
+      }, [allArrivals]);
+
       return(
             <div className="carousel-container">
                   <div className="section-title-container">
@@ -53,16 +90,15 @@ const ArrivalSlider = ({sectionTitle, numberOfSlides}) => {
                               </svg> */}
                         </h3>
                   </div>
+                  {console.log(allArrivals)}
                   <Slider {...settings}>
-                        <MovieCard />
-                        <MovieCard />
-                        <MovieCard />
-                        <MovieCard />
-                        <MovieCard />
-                        <MovieCard />
-                        <MovieCard />
-                        <MovieCard />
-                        <MovieCard />
+                        {
+                              allArrivals.map((a) => {
+                                    return(
+                                          <ArrivalCard key={a.id} a={a} />
+                                    )
+                              })
+                        }
                   </Slider>
             </div>
       )

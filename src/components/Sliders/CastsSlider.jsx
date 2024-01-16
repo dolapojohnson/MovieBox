@@ -46,8 +46,8 @@ const CastSlider = ({sectionTitle, numberOfSlides}) => {
       useEffect(() => {
             const fetchCharacters = async () => {
                   const response = await fetch('https://api.themoviedb.org/3/person/popular?api_key=98c4ef5b2dc9e5742da5ddd3b9816b9f');
-                  const questions = await response.json();
-                  const casts = questions.results;
+                  const resToJson = await response.json();
+                  const casts = resToJson.results;
                   setAllCharacters(casts);
             }
             fetchCharacters();
@@ -69,7 +69,7 @@ const CastSlider = ({sectionTitle, numberOfSlides}) => {
                         {
                               allCharacters.map((c) => {
                                     return(
-                                          <CastCard c={c} />
+                                          <CastCard key={c.id} c={c} />
                                     );
                               })
                         }

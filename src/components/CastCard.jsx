@@ -1,5 +1,5 @@
 import React from "react";
-import Reynolds from '../assets/images/reynolds.png'
+// import Reynolds from '../assets/images/reynolds.png'
 
 const CastCard = ({c}) => {
       return(

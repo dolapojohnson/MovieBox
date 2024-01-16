@@ -1,5 +1,5 @@
 import React from "react";
-import Thumbnail from '../assets/images/Thumbnails.png'
+// import Thumbnail from '../assets/images/Thumbnails.png'
 
 const VideoCard = ({v}) => {
       return(

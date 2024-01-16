@@ -69,7 +69,7 @@ const VideoSlider = ({sectionTitle, numberOfSlides}) => {
                         {
                               allVideos.map((v) => {
                                     return(
-                                          <VideoCard v={v} />
+                                          <VideoCard key={v.id} v={v} />
                                     )
                               })
                         }
