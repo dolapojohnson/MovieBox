@@ -31,7 +31,7 @@ const ArrivalCard = ({a}) => {
                               </div>
                         </div>
                         <p className="place-genre">
-                              Action, Adventure, Comic
+                              Action, Comic
                         </p>
                   </div>
             </div>
