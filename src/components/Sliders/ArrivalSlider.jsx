@@ -56,29 +56,43 @@ const ArrivalSlider = ({sectionTitle, numberOfSlides}) => {
                   const resToJson = await response.json();
                   const results = await resToJson.results;
                   // console.log(results)
+                  console.log('1')
                   setAllArrivals(results)
             }
             fetchArrivals();
       }, []);
 
-      const  fetchMovieDetails = async (movieId) => {
+      const fetchMovieDetails = async (movieId) => {
             try {
-                  const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=98c4ef5b2dc9e5742da5ddd3b9816b9f`);
-                  if (!response.ok) {
-                        throw new Error(`Failed to fetch details for movie ID ${movieId}`);                  
-                  }
-                  const movieDetails = await response.json();
-                  //Handle movie details as needed
-                  // console.log('Movie details: ', movieDetails)
-                  setNewArrivals(movieDetails)
+              const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=98c4ef5b2dc9e5742da5ddd3b9816b9f`);
+              if (!response.ok) {
+                throw new Error(`Failed to fetch details for movie ID ${movieId}`);
+              }
+              const movieDetails = await response.json();
+              return movieDetails;
+              // Handle the movie details as needed
+            //   console.log('Movie Details:', movieDetails);
             } catch (error) {
-                  console.error(error);
+              console.error(error);
             }
       };
 
       useEffect(() => {
-            allArrivals.forEach((movie) => fetchMovieDetails(movie.id));
+            const fetchInfo = async () => {
+                  const result = [];
+                  // Fetch details for each movie when movieData state updates
+                  for(let i = 0; i < allArrivals.length; i++) {
+                        var movie = allArrivals[i];
+                        var details = await fetchMovieDetails(movie.id)
+                      result.push(details)
+                  //     console.log(movie)
+                  console.log('3')
+                  }
+                  setNewArrivals(result);
+            }
+            fetchInfo();
       }, [allArrivals]);
+
 
       return(
             <div className="carousel-container">
@@ -90,10 +104,10 @@ const ArrivalSlider = ({sectionTitle, numberOfSlides}) => {
                               </svg> */}
                         </h3>
                   </div>
-                  {console.log(allArrivals)}
+                  {/* {console.log('new Arrivals: ',newArrivals)} */}
                   <Slider {...settings}>
                         {
-                              allArrivals.map((a) => {
+                              newArrivals.map((a) => {
                                     return(
                                           <ArrivalCard key={a.id} a={a} />
                                     )
