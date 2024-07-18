@@ -13,7 +13,7 @@ const ArrivalSlider = ({sectionTitle, numberOfSlides}) => {
       const settings = {
             dots: false,
             infinite: false,
-            speed: 900,
+            speed: 700,
             slidesToShow: numberOfSlides,
             slidesToScroll: 4,
             initialSlide: 0,
